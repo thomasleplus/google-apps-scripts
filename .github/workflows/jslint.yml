@@ -1,0 +1,22 @@
+---
+name: "JSLint"
+
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+
+  check:
+    name: Check with JSLint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+    - name: Install JSLint
+      run: sudo npm install -g jslint
+    - name: Run JSLint
+      run: jslint --browser javascripts/*.js

@@ -4,6 +4,6 @@ Receive an email notification for each birthday in your 'Birthdays' calendar. Th
 
 I run this daily using a [standalone script](https://developers.google.com/apps-script/guides/standalone) with [time-driven trigger](https://developers.google.com/apps-script/guides/triggers/installable#time-driven_triggers).
 
-The script has two optional script properties:
+The script has two optional [script properties](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually):
 - calendar: the name of the Google Calendar to monitor (default is 'Birthdays').
 - offset: the numbers of days before an event that you want to receive the email (default is 0).

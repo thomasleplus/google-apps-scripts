@@ -10,8 +10,10 @@ function sendBirthdayRemindersByEmail() {
         var eventDate = new Date();
         var offset = PropertiesService.getScriptProperties().getProperty('offset');
         if (offset != null) {
-           eventDate.setDate(eventDate.getDate() + offset);
+           console.log('Using offset of ' + offset + ' day(s)');
+           eventDate = new Date(eventDate.getTime() + offset * 24 * 60 * 60 * 1000);
         }
+        console.log('Searching for date ' + eventDate);
         calendar.getEventsForDay(eventDate).forEach(function(event) {
             var email = Session.getActiveUser().getEmail();
             var title = event.getTitle();

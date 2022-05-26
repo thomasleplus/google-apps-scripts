@@ -1,10 +1,18 @@
 "use strict";
 
 function sendBirthdayRemindersByEmail() {
-    CalendarApp.getCalendarsByName('Birthdays').forEach(function(calendar) {
+    var calendarName = PropertiesService.getScriptProperties().getProperty('calendar');
+    if (calendarName == null) {
+        calendarName = 'Birthdays';
+    }
+    CalendarApp.getCalendarsByName(calendarName).forEach(function(calendar) {
         console.log('Checking calendar "' + calendar.getName() + '"');
-        var today = new Date();
-        calendar.getEventsForDay(today).forEach(function(event) {
+        var eventDate = new Date();
+        var offset = PropertiesService.getScriptProperties().getProperty('offset');
+        if (offset != null) {
+           eventDate.setDate(eventDate.getDate() + offset);
+        }
+        calendar.getEventsForDay(eventDate).forEach(function(event) {
             var email = Session.getActiveUser().getEmail();
             var title = event.getTitle();
             console.log('Emailing "' + title + '" to ' + email);

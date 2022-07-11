@@ -1,10 +1,16 @@
 'use strict'
 
 function exportToOffice () {
+  let expiry = PropertiesService.getScriptProperties().getProperty('expiry')
+  if (expiry == null) {
+    expiry = 30
+  }
   let folderName = PropertiesService.getScriptProperties().getProperty('folder')
   if (folderName == null) {
     folderName = 'Export'
   }
+  const modulo = new Date().getUTCHours()
+  const now = new Date()
   const description = '#ExportedToOffice'
   const conversions = [
     ['application/vnd.google-apps.spreadsheet', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', '.xslx'],
@@ -23,8 +29,13 @@ function exportToOffice () {
   while (oldFiles.hasNext()) {
     const oldFile = oldFiles.next()
     if (oldFile.getDescription() === description) {
-      console.log('Deleting file "' + oldFile.getName() + '"')
-      oldFile.setTrashed(true)
+      if (oldFile.getDateCreated() - now > expiry) {
+        console.log('Deleting obsolete file "' + oldFile.getName() + '"')
+        oldFile.setTrashed(true)
+      } else if (oldFile.getName().charCodeAt(0) % 24 === modulo) {
+        console.log('Deleting file "' + oldFile.getName() + '"')
+        oldFile.setTrashed(true)
+      }
     }
   }
   for(var i = 0; i < conversions.length; i++) {
@@ -41,11 +52,13 @@ function exportToOffice () {
         console.log('Skipping shared file "' + file.getName() + '"')
         continue
       }
-      console.log('Converting "' + file.getName() + '"')
-      const blob = getFileAsBlob(file.getId(), conversion[1])
-      const newFile = folder.createFile(blob)
-      newFile.setName(file.getName() + conversion[2])
-      newFile.setDescription(description)
+      if (file.getName().charCodeAt(0) % 24 === modulo) {
+        console.log('Converting "' + file.getName() + '"')
+        const blob = getFileAsBlob(file.getId(), conversion[1])
+        const newFile = folder.createFile(blob)
+        newFile.setName(file.getName() + conversion[2])
+        newFile.setDescription(description)
+      }
     }
   }
 }

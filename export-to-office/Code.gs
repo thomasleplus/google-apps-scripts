@@ -1,5 +1,10 @@
+'use strict'
+
 function exportToOffice () {
-  const folderName = 'Export'
+  let folderName = PropertiesService.getScriptProperties().getProperty('folder')
+  if (folderName == null) {
+    folderName = 'Export'
+  }
   const description = '#ExportedToOffice'
   const conversions = [
     ['application/vnd.google-apps.spreadsheet', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', '.xslx'],

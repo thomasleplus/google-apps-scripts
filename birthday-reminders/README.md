@@ -7,3 +7,5 @@ I run this daily using a [standalone script](https://developers.google.com/apps-
 The script has two optional [script properties](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually):
 - calendar: the name of the Google Calendar to monitor (default is 'Birthdays').
 - offset: the numbers of days before an event that you want to receive the email (default is 0).
+- prefix: if set the string contained in this property will be added at the beginning of the email subject. No space or separator is added by the script so if needed, it should be added explicitly at the end of this property's value (e.g., a trailing space).
+- suffix: if set the string contained in this property will be added at the end of the email subject. No space or separator is added by the script so if needed, it should be added explicitly at the beginning of this property's value (e.g., a leading space).

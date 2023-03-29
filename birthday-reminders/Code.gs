@@ -5,6 +5,14 @@ function sendBirthdayRemindersByEmail () {
   if (calendarName == null) {
     calendarName = 'Birthdays'
   }
+  let prefix = PropertiesService.getScriptProperties().getProperty('prefix')
+  if (prefix == null) {
+    prefix = ''
+  }
+  let suffix = PropertiesService.getScriptProperties().getProperty('suffix')
+  if (suffix == null) {
+    suffix = ''
+  }
   CalendarApp.getCalendarsByName(calendarName).forEach(function (calendar) {
     console.log('Checking calendar "' + calendar.getName() + '"')
     let eventDate = new Date()
@@ -16,11 +24,11 @@ function sendBirthdayRemindersByEmail () {
     console.log('Searching for date ' + eventDate)
     calendar.getEventsForDay(eventDate).forEach(function (event) {
       const email = Session.getActiveUser().getEmail()
-      const title = event.getTitle()
-      console.log('Emailing "' + title + '" to ' + email)
+      const subject = prefix + event.getTitle() + suffix
+      console.log('Emailing "' + subject + '" to ' + email)
       MailApp.sendEmail({
         to: email,
-        subject: title,
+        subject: subject,
         htmlBody: event.getDescription()
       })
     })

@@ -1,7 +1,7 @@
 'use strict'
 
 function sendBirthdayRemindersByEmail () {
-  const properties = PropertiesService.getScriptProperties();
+  const properties = PropertiesService.getScriptProperties()
   let calendarName = properties.getProperty('calendar')
   if (calendarName == null) {
     calendarName = 'Birthdays'

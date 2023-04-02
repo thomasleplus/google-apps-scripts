@@ -8,7 +8,7 @@ function sendBirthdayRemindersByEmail () {
   }
   let subjectTemplate = properties.getProperty('emailSubjectTemplate')
   if (subjectTemplate == null) {
-    subjectTemplate = '${event.title}'
+    subjectTemplate = '${event.summary}'
   }
   let bodyTemplate = properties.getProperty('emailBodyTemplate')
   if (bodyTemplate == null) {

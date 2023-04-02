@@ -7,5 +7,9 @@ I run this daily using a [standalone script](https://developers.google.com/apps-
 The script has two optional [script properties](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually):
 - calendar: the name of the Google Calendar to monitor (default is 'Birthdays').
 - offset: the numbers of days before an event that you want to receive the email (default is 0).
-- prefix: if set the string contained in this property will be added at the beginning of the email subject. No space or separator is added by the script so if needed, it should be added explicitly at the end of this property's value (e.g., a trailing space).
-- suffix: if set the string contained in this property will be added at the end of the email subject. No space or separator is added by the script so if needed, it should be added explicitly at the beginning of this property's value (e.g., a leading space).
+- subjectTemplate: template used to generate the email subject, see syntax below (default is ${event.summary}).
+- bodyTemplate: template used to generate the email body, see syntax below (default is ${event.description}).
+
+The syntax for the template properties is a string where the following substitutions will be conducted:
+- all occurrences of the ${event.foo} where foo is a valid property of the [Google Calendar event object](https://developers.google.com/calendar/api/v3/reference/events) will be replaced with the corresponding value.
+- all occurrences of the ${properties.foo} where foo can be any [script property](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually) will be replaced with the corresponding value.

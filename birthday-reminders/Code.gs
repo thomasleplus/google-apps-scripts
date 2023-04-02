@@ -44,5 +44,6 @@ function processTemplate(template, event, properties) {
     } else if (p1 == 'properties') {
       return properties.getProperty(p2) || string
     }
+    return string
   })
 }

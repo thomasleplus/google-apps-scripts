@@ -23,13 +23,13 @@ function sendBirthdayRemindersByEmail () {
 
   let subjectTemplate = properties.getProperty('emailSubjectTemplate')
   if (subjectTemplate == null) {
-    subjectTemplate = '${event.summary}'
+    subjectTemplate = '${event.getTitle()}'
   }
   console.log('subjectTemplate=' + subjectTemplate)
 
   let bodyTemplate = properties.getProperty('emailBodyTemplate')
   if (bodyTemplate == null) {
-    bodyTemplate = '${event.description}'
+    bodyTemplate = '${event.getDescription()}'
   }
   console.log('bodyTemplate=' + bodyTemplate)
   
@@ -50,10 +50,14 @@ function sendBirthdayRemindersByEmail () {
 }
 
 function processTemplate(template, event, properties) {
-  return template.replace(/\$\{(event|properties)\.(\w+)\}/g, function(match, p1, p2, offset, string, groups) {
+  return template.replace(/\$\{(event|properties)\.([^\}]+)\}/g, function(match, p1, p2, offset, string, groups) {
     if (p1 == 'event') {
       console.log('Template matches ${event.' + p2 + '}')
-      return event[p2] || match
+      if (p2.endsWith('()')) {
+          console.log('Invoking event.' + p2)
+          return event[p2.slice(0, -2)]() || match
+      }
+      return match
     } else if (p1 == 'properties') {
       console.log('Template matches ${properties.' + p2 + '}')
       return properties.getProperty(p2) || match

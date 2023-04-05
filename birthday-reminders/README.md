@@ -8,8 +8,8 @@ The script has two optional [script properties](https://developers.google.com/ap
 - calendar: the name of the Google Calendar to monitor (default is 'Birthdays').
 - offset: the numbers of days before an event that you want to receive the email (default is 0).
 - subjectTemplate: template used to generate the email subject, see syntax below (default is ${event.getTitle()}).
-- bodyTemplate: template used to generate the email body, see syntax below (default is ${event.description}).
+- bodyTemplate: template used to generate the email body, see syntax below (default is ${event.getDescription()}).
 
 The syntax for the template properties is a string where the following substitutions will be conducted:
-- all occurrences of the ${event.getFoo()} where getFoo() is a method with no argument from the [Calendar event object]([https://developers.google.com/calendar/api/v3/reference/events](https://developers.google.com/apps-script/reference/calendar/calendar-event)) will be replaced with the corresponding value returned by the method.
+- all occurrences of the ${event.getFoo()} where getFoo() is a method with no argument from the [Calendar event object](https://developers.google.com/apps-script/reference/calendar/calendar-event) will be replaced with the corresponding value returned by the method.
 - all occurrences of the ${properties.foo} where foo can be any [script property](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually) will be replaced with the corresponding value.

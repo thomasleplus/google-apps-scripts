@@ -103,5 +103,29 @@ dist
 # TernJS port file
 .tern-port
 
+# Infrastructure
+# =========================
+
+# AWS
+.aws/
+
+# Azure
+.azure/
+
+# Docker
+.docker/
+
+# Git
+.git-credentials
+
+# Kubernetes
+.kube/
+
+# SSH
+.ssh/
+
+# Remote Desktop
+*.rdp
+
 # SARIF files
 *.sarif

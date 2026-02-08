@@ -8,7 +8,7 @@ Receive an email notification for each birthday in your 'Birthdays' calendar.
 
 ## [Export To Office](export-to-office/)
 
-Export all Google Docs, Google Spreasheets and Google Slides to Microsoft Word, Microsoft Excel and Microsoft Powerpoint format (respectively).
+Export all Google Docs, Google Spreadsheets and Google Slides to Microsoft Word, Microsoft Excel and Microsoft Powerpoint format (respectively).
 
 ## Contributing
 

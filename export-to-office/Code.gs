@@ -55,7 +55,7 @@ function exportToOffice() {
         oldFile.setTrashed(true);
         /*
       To support a large number of files, this script is to be run once an hour and on each run it
-      it will export approximatly 1/24th of the files.
+      it will export approximately 1/24th of the files.
       */
       } else if (oldFile.getName().charCodeAt(0) % 24 === modulo) {
         console.log('Deleting file "' + oldFile.getName() + '"');
@@ -71,7 +71,7 @@ function exportToOffice() {
       const file = files.next();
       /*
       To support a large number of files, this script is to be run once an hour and on each run it
-      it will export approximatly 1/24th of the files.
+      it will export approximately 1/24th of the files.
       */
       if (file.getName().charCodeAt(0) % 24 === modulo) {
         if (file.isTrashed()) {

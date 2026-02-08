@@ -1,8 +1,8 @@
 # Export To Office
 
-Export all Google Docs, Google Spreasheets, Google Slides and Google My Maps to Microsoft Word, Microsoft Excel, Microsoft Powerpoint and Keyhole Markup Language (KMZ) format (respectively).
+Export all Google Docs, Google Spreadsheets, Google Slides and Google My Maps to Microsoft Word, Microsoft Excel, Microsoft Powerpoint and Keyhole Markup Language (KMZ) format (respectively).
 
-Since Apps Scripts have a 6-minute runtime limite, I run this script hourly using a [standalone script](https://developers.google.com/apps-script/guides/standalone) with [time-driven trigger](https://developers.google.com/apps-script/guides/triggers/installable#time-driven_triggers). Each run exports 1/24th of the files in Google Drive so at the end of each day, all files should have been exported.
+Since Apps Scripts have a 6-minute runtime limit, I run this script hourly using a [standalone script](https://developers.google.com/apps-script/guides/standalone) with [time-driven trigger](https://developers.google.com/apps-script/guides/triggers/installable#time-driven_triggers). Each run exports 1/24th of the files in Google Drive so at the end of each day, all files should have been exported.
 
 The script has two optional [script properties](https://developers.google.com/apps-script/guides/properties#manage_script_properties_manually):
 

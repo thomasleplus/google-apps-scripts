@@ -1,0 +1,6 @@
+{
+  "ignore": [
+    ".github/workflows/osv-scanner-pr.yml",
+    ".github/workflows/osv-scanner.yml"
+  ]
+}
